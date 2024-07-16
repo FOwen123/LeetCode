@@ -1,15 +1,21 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        if n == 0:
-            return 1
-        
         if n < 0:
-            return 1 / self.myPow(x, - n)
+            x = 1 / x
+            n = -n
+            
+        ans = 1
+        curr = x
         
-        half = self.myPow(x, n // 2)
+        while n > 0:
+            if n & 1:
+                ans *= curr
+            
+            curr *= curr
+            
+            n >>= 1
         
-        if n % 2 == 0:
-            return half * half
-        return x * half * half
+        return ans
+            
         
         
