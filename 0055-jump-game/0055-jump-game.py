@@ -1,9 +1,11 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        m = 0
-        for i, n in enumerate(nums):
-            if m < i:
+        gas = 0
+        for i in nums:
+            if gas < 0:
                 return False
-            m = max(m, i + n)
+            elif i > gas:
+                gas = i
+            gas -= 1
         return True
         
